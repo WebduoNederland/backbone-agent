@@ -3,12 +3,12 @@
 namespace WebduoNederland\BackboneAgent\Middleware;
 
 use Closure;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class VerifyApiTokenMiddleware
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next): JsonResponse
     {
         $bearerToken = $request->bearerToken();
 
@@ -19,7 +19,8 @@ class VerifyApiTokenMiddleware
             ], 401);
         }
 
-        $apiKey = config()->string('backbone-agent.api_key', '');
+        /** @var ?string $apiKey */
+        $apiKey = config()->get('backbone-agent.api_key');
 
         if (blank($apiKey)) {
             return response()->json([
