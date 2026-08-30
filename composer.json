@@ -41,6 +41,7 @@
     },
     "scripts": {
         "style": "./vendor/bin/pint",
+        "style-test": "./vendor/bin/pint --test",
         "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G",
         "test": "./vendor/bin/phpunit",
         "quality": [
