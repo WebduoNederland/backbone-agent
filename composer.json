@@ -1,0 +1,54 @@
+{
+    "name": "webduonederland/backbone-agent",
+    "description": "Backbone Agent",
+    "type": "package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Finn Paes",
+            "email": "finn@webduo.nl"
+        }
+    ],
+    "require": {
+        "php": "^8.4",
+        "laravel/framework": "^12.0|^13.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.10",
+        "laravel/pint": "^1.30",
+        "phpunit/phpunit": "^12.5",
+        "orchestra/testbench": "^10.9|^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "WebduoNederland\\BackboneAgent\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WebduoNederland\\BackboneAgent\\Tests\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WebduoNederland\\BackboneAgent\\ServiceProvider"
+            ]
+        }
+    },
+    "scripts": {
+        "style": "./vendor/bin/pint",
+        "analyse": "./vendor/bin/phpstan analyse --memory-limit=2G",
+        "test": "./vendor/bin/phpunit",
+        "quality": [
+            "@style",
+            "@analyse",
+            "@test"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
