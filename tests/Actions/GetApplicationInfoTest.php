@@ -18,10 +18,10 @@ class GetApplicationInfoTest extends TestCase
 
         $result = app(GetApplicationInfo::class)->get();
 
-        $this->assertSame($this->app->version(), $result['laravel_version']);
+        $this->assertSame($this->app?->version(), $result['laravel_version']);
         $this->assertSame(phpversion(), $result['php_version']);
-        $this->assertSame($this->app->environment(), $result['environment']);
-        $this->assertSame($this->app->hasDebugModeEnabled(), $result['debug_mode_enabled']);
+        $this->assertSame($this->app?->environment(), $result['environment']);
+        $this->assertSame($this->app?->hasDebugModeEnabled(), $result['debug_mode_enabled']);
         $this->assertSame('Europe/Amsterdam', $result['timezone']);
         $this->assertSame('database', $result['cache_driver']);
         $this->assertSame('sync', $result['queue_driver']);
