@@ -22,6 +22,8 @@ class InfoControllerTest extends TestCase
             'cache_driver' => 'database',
             'queue_driver' => 'sync',
             'session_driver' => 'database',
+            'php_file_scanner_panic_mode_enabled' => true,
+            'php_file_scanner_shutdown_permission' => true,
         ];
 
         $this->mock(GetApplicationInfo::class)

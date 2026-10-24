@@ -74,3 +74,9 @@ To enable it:
    BACKBONE_AGENT_PANIC_MODE=true
    BACKBONE_AGENT_SHUTDOWN_COMMAND="sudo -n /usr/sbin/shutdown -h now"
    ```
+
+5. Check if it works, without shutting down the server, by running this as the site user:
+
+   ```bash
+   php artisan backbone-agent:check-shutdown-permission
+   ```

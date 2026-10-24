@@ -5,6 +5,7 @@ namespace WebduoNederland\BackboneAgent;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use WebduoNederland\BackboneAgent\Commands\CheckShutdownPermissionCommand;
 use WebduoNederland\BackboneAgent\Commands\ScanPublicPhpFilesCommand;
 
 class ServiceProvider extends BaseServiceProvider
@@ -39,6 +40,7 @@ class ServiceProvider extends BaseServiceProvider
     protected function bootCommands(): self
     {
         $this->commands([
+            CheckShutdownPermissionCommand::class,
             ScanPublicPhpFilesCommand::class,
         ]);
 
