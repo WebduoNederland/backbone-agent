@@ -2,8 +2,10 @@
 
 namespace WebduoNederland\BackboneAgent;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use WebduoNederland\BackboneAgent\Commands\ScanPublicPhpFilesCommand;
 
 class ServiceProvider extends BaseServiceProvider
 {
@@ -11,7 +13,9 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this
             ->bootConfig()
-            ->bootRoutes();
+            ->bootRoutes()
+            ->bootCommands()
+            ->bootSchedule();
     }
 
     protected function bootConfig(): self
@@ -27,6 +31,26 @@ class ServiceProvider extends BaseServiceProvider
     {
         Route::prefix('api/backbone')->middleware('api')->group(function (): void {
             $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+        });
+
+        return $this;
+    }
+
+    protected function bootCommands(): self
+    {
+        $this->commands([
+            ScanPublicPhpFilesCommand::class,
+        ]);
+
+        return $this;
+    }
+
+    protected function bootSchedule(): self
+    {
+        $this->callAfterResolving(Schedule::class, function (Schedule $schedule): void {
+            $schedule->command(ScanPublicPhpFilesCommand::class)
+                ->everyFifteenSeconds()
+                ->evenInMaintenanceMode();
         });
 
         return $this;
