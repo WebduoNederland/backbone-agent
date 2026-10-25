@@ -5,9 +5,10 @@ namespace WebduoNederland\BackboneAgent\Jobs\PhpFileScanner;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Laravel\Horizon\Contracts\Silenced;
 use WebduoNederland\BackboneAgent\Actions\PhpFileScanner\ScanPublicPhpFiles;
 
-class ScanPublicPhpFilesJob implements ShouldBeUnique, ShouldQueue
+class ScanPublicPhpFilesJob implements ShouldBeUnique, ShouldQueue, Silenced
 {
     use Queueable;
 

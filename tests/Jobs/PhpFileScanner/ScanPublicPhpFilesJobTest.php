@@ -2,6 +2,7 @@
 
 namespace WebduoNederland\BackboneAgent\Tests\Jobs\PhpFileScanner;
 
+use Laravel\Horizon\Contracts\Silenced;
 use PHPUnit\Framework\Attributes\Test;
 use WebduoNederland\BackboneAgent\Actions\PhpFileScanner\ScanPublicPhpFiles;
 use WebduoNederland\BackboneAgent\Jobs\PhpFileScanner\ScanPublicPhpFilesJob;
@@ -33,5 +34,11 @@ class ScanPublicPhpFilesJobTest extends TestCase
     public function it_only_tries_once(): void
     {
         $this->assertSame(1, (new ScanPublicPhpFilesJob)->tries());
+    }
+
+    #[Test]
+    public function it_is_silenced_in_horizon(): void
+    {
+        $this->assertInstanceOf(Silenced::class, new ScanPublicPhpFilesJob);
     }
 }

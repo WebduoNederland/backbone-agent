@@ -12,6 +12,7 @@
     "require": {
         "php": "^8.4",
         "laravel/framework": "^12.0|^13.0",
+        "laravel/horizon": "^5.0",
         "league/flysystem-sftp-v3": "^3.0",
         "spatie/db-dumper": "^4.1"
     },

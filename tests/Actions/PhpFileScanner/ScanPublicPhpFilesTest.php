@@ -71,7 +71,7 @@ class ScanPublicPhpFilesTest extends TestCase
 
         app(ScanPublicPhpFiles::class)->scan();
 
-        Http::assertSentCount(1);
+        Http::assertSentCount(2);
 
         Process::assertRan('sudo -n shutdown -h now');
     }
